@@ -35,10 +35,9 @@ class MyWidget extends StatelessWidget {
         ),
        
         ),
-        backgroundColor: const Color.fromARGB(255, 110, 8, 184)
+        backgroundColor: const Color.fromARGB(255, 111, 8, 184)
         ),
         body: MyHomePage(),
       );
   }
 }
-
