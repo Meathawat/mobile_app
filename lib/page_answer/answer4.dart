@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(ProfileApp());
-}
-
-class ProfileApp extends StatelessWidget {
+class Answer4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,7 +10,17 @@ class ProfileApp extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  String userName = 'Shiro';
+  String email = 'Shiromeowsing@example.com';
+  String phone = '121-231-2121';
+  String address = '123 Main Street';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,32 +31,41 @@ class ProfilePage extends StatelessWidget {
             color: Colors.orange,
             child: Column(
               children: [
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Profile Page',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back, color: Colors.white),
+                      onPressed: () {
+                        Navigator.pop(context); // ย้อนกลับไปยังหน้าก่อนหน้า
+                      },
                     ),
-                  ),
+                    const Expanded(
+                      child: Text(
+                        'Profile Page',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Container(
                   width: double.infinity,
                   color: Colors.blue,
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: Column(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 40,
                         backgroundImage: AssetImage('assets/images/shiro.jpg'),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
-                        'User Name',
-                        style: TextStyle(
+                        userName,
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -62,19 +77,19 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           // Profile Information
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               children: [
-                profileRow(Icons.email, 'meow@example.com'),
-                profileRow(Icons.phone, '121-231-2121'),
-                profileRow(Icons.location_on, '123 Main Street'),
+                profileRow(Icons.email, email),
+                profileRow(Icons.phone, phone),
+                profileRow(Icons.location_on, address),
               ],
             ),
           ),
-          Spacer(),
+          const Spacer(),
           // Buttons
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -83,16 +98,16 @@ class ProfilePage extends StatelessWidget {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Edit Profile'),
+                    onPressed: () => _editProfile(context),
+                    child: const Text('Edit Profile'),
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: Text('Logout'),
+                    child: const Text('Logout'),
                   ),
                 ),
               ],
@@ -109,13 +124,71 @@ class ProfilePage extends StatelessWidget {
       child: Row(
         children: [
           Icon(icon, color: Colors.blue, size: 28),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           Text(
             text,
-            style: TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16),
           ),
         ],
       ),
+    );
+  }
+
+  void _editProfile(BuildContext context) {
+    TextEditingController nameController = TextEditingController(text: userName);
+    TextEditingController emailController = TextEditingController(text: email);
+    TextEditingController phoneController = TextEditingController(text: phone);
+    TextEditingController addressController = TextEditingController(text: address);
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Edit Profile'),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: nameController,
+                  decoration: const InputDecoration(labelText: 'Name'),
+                ),
+                TextFormField(
+                  controller: emailController,
+                  decoration: const InputDecoration(labelText: 'Email'),
+                ),
+                TextFormField(
+                  controller: phoneController,
+                  decoration: const InputDecoration(labelText: 'Phone'),
+                ),
+                TextFormField(
+                  controller: addressController,
+                  decoration: const InputDecoration(labelText: 'Address'),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  userName = nameController.text;
+                  email = emailController.text;
+                  phone = phoneController.text;
+                  address = addressController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

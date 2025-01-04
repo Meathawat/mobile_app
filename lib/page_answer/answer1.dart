@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Answer1 extends StatelessWidget {
+  const Answer1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +11,12 @@ class MyApp extends StatelessWidget {
           title: const Text("Grid Layout"),
           backgroundColor: Colors.orange,
           centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
         body: const GridLayoutExample(),
       ),
@@ -48,6 +50,7 @@ class GridLayoutExample extends StatelessWidget {
               ColoredBox(color: Colors.yellow),
             ],
           ),
+          const SizedBox(height: 20),
         ],
       ),
     );

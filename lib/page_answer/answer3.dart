@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(ProductApp());
-}
-
-class ProductApp extends StatelessWidget {
+class Answer3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'Product Display',
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
+      ),
       home: ProductLayout(),
     );
   }
@@ -18,80 +18,81 @@ class ProductLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          // Header
-          Container(
-            width: double.infinity,
-            color: Colors.orange,
-            padding: EdgeInsets.all(16),
-            child: Text(
-              'Product Layout',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+      appBar: AppBar(
+        title: const Text('Product Layout'),
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              color: Colors.orange,
+              padding: const EdgeInsets.all(8.0),
+              child: const Text(
+                'Product Layout',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 8),
-          // Category Title
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              'Category: Electronics',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            const SizedBox(height: 10),
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.all(8.0),
+              child: const Text(
+                'Category: Electronics',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
             ),
-          ),
-          SizedBox(height: 16),
-          // Product Rows
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
+            const SizedBox(height: 10),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8.0,
+                mainAxisSpacing: 50.0,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      productCard('Laptop', '999 THB'),
-                      productCard('Smartphone', '699 THB'),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      productCard('Tablet', '499 THB'),
-                      productCard('Camera', '299 THB'),
-                    ],
-                  ),
+                  productCard('Laptop', '999 THB', 'assets/images/mac.jpg'),
+                  productCard('Smartphone', '699 THB', 'assets/images/iphone.jpg'),
+                  productCard('Tablet', '499 THB', 'assets/images/ipad.jpg'),
+                  productCard('Camera', '299 THB', 'assets/images/camera.jpg'),
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  Widget productCard(String name, String price) {
+  Widget productCard(String name, String price, String imagePath) {
     return Column(
       children: [
-        Container(
-          width: 150,
-          height: 150,
-          color: Colors.grey[400],
+        Image.asset(
+          imagePath,
+          width: 105,
+          height: 105,
+          fit: BoxFit.cover,
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           name,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         Text(
           price,
-          style: TextStyle(fontSize: 14, color: Colors.green),
+          style: const TextStyle(fontSize: 14, color: Colors.green),
         ),
       ],
     );

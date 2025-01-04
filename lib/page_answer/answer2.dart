@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class Answer2 extends StatelessWidget {
+  const Answer2 ({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,6 +10,12 @@ class MyApp extends StatelessWidget {
           title: const Text("Social Media Post"),
           backgroundColor: Colors.orange,
           centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
         body: const SocialMediaPost(),
       ),
