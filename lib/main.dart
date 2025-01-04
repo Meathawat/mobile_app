@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_1/my_stateful_widget.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,52 +9,60 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Flutter Demo'),
-          backgroundColor: Colors.pink, // สีชมพูสำหรับ AppBar
-        ),
-        body: Container(
-          color: Colors.purple[100], // พื้นหลังสีม่วงอ่อน
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start, // จัดปุ่มให้อยู่บนสุด
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly, // กระจายปุ่มในแถว
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red, // สีปุ่มแดง
-                    ),
-                    child: Text('Item 1'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green, // สีปุ่มเขียว
-                    ),
-                    child: Text('Item 2'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue, // สีปุ่มน้ำเงิน
-                    ),
-                    child: Text('Item 3'),
-                  ),
-                ],
-              ),
-            ],
+      home: MyStatfukWidgets(),
+    );
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  @override
+  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  String appBarTitle = 'Demo App'; // กำหนด State สำหรับ AppBar
+
+  @override
+  void initState() {
+    super.initState();
+    print("State Initialized"); // แสดงข้อความใน Console
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.orange,
+        title: Align(
+          alignment: Alignment.center, // ข้อความชิดซ้าย
+          child: Text(
+            appBarTitle,
+            style: const TextStyle(fontSize: 20),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            print('Floating button pressed');
-          },
-          backgroundColor: Colors.pink[200], // สีของปุ่มลอย
-          child: Icon(Icons.phone), // ไอคอนโทรศัพท์
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Hello, เมธาวัจน์ ธนิพัฒน์วรกิจ 630710664',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  appBarTitle = 'Hello, Stateful Widget!';
+                });
+              },
+              child: const Text('Change AppBar Title'),
+            ),
+          ],
         ),
       ),
     );
