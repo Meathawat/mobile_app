@@ -45,7 +45,7 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 40,
-                        backgroundColor: Colors.white,
+                        backgroundImage: AssetImage('assets/images/shiro.jpg'),
                       ),
                       SizedBox(height: 10),
                       Text(
@@ -68,8 +68,8 @@ class ProfilePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               children: [
-                profileRow(Icons.email, 'user@example.com'),
-                profileRow(Icons.phone, '123-456-7890'),
+                profileRow(Icons.email, 'meow@example.com'),
+                profileRow(Icons.phone, '121-231-2121'),
                 profileRow(Icons.location_on, '123 Main Street'),
               ],
             ),
