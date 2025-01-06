@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_1/page_answer/Answer_portal.dart';
 
 class Answer3 extends StatelessWidget {
   @override
@@ -25,7 +26,10 @@ class ProductLayout extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => MainApp()),
+            );
           },
         ),
       ),

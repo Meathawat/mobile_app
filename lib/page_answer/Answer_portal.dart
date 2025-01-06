@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'page_answer/Answer1.dart';
-import 'page_answer/Answer2.dart';
-import 'page_answer/Answer3.dart';
-import 'page_answer/Answer4.dart';
+import 'Answer1.dart';
+import 'Answer2.dart';
+import 'Answer3.dart';
+import 'Answer4.dart';
 
 void main() {
   runApp(MainApp());
@@ -23,8 +23,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Home Page'),
         backgroundColor: Colors.orange,
+        centerTitle: true,
       ),
       body: Center(
         child: Column(

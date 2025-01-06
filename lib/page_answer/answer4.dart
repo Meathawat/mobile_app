@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_1/page_answer/Answer_portal.dart';
 
 class Answer4 extends StatelessWidget {
   @override
@@ -26,7 +27,6 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       body: Column(
         children: [
-          // Custom AppBar
           Container(
             color: Colors.orange,
             child: Column(
@@ -36,7 +36,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     IconButton(
                       icon: const Icon(Icons.arrow_back, color: Colors.white),
                       onPressed: () {
-                        Navigator.pop(context); // ย้อนกลับไปยังหน้าก่อนหน้า
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => MainApp()),
+                        );
                       },
                     ),
                     const Expanded(
@@ -78,7 +81,6 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           const SizedBox(height: 20),
-          // Profile Information
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
@@ -90,7 +92,6 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           const Spacer(),
-          // Buttons
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(

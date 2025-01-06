@@ -32,10 +32,8 @@ class SocialMediaPost extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          // Row for profile picture and user details
           Row(
             children: [
-              // Profile picture
               Container(
                 width: 50,
                 height: 50,
@@ -45,7 +43,6 @@ class SocialMediaPost extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              // User details
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
@@ -63,14 +60,12 @@ class SocialMediaPost extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          // Post content
           Container(
             width: double.infinity,
             height: 200,
             color: Colors.grey[300],
           ),
           const SizedBox(height: 20),
-          // Row for action buttons
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
