@@ -42,29 +42,40 @@ class _TrafficLightPageState extends State<TrafficLightPage> {
         backgroundColor: Colors.purple,
         centerTitle: true,
       ),
-      body: Center( 
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            
-            AnimatedOpacity(
-              duration: const Duration(seconds: 1),
-              opacity: getOpacity(0),
-              child: buildLight(Colors.red),
-            ),
-            const SizedBox(height: 10),
+            Container(
+              width: 120,
+              height: 300,
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  AnimatedOpacity(
+                    duration: const Duration(seconds: 1),
+                    opacity: getOpacity(0),
+                    child: buildLight(Colors.red, currentLight == 0),
+                  ),
 
-            AnimatedOpacity(
-              duration: const Duration(seconds: 1),
-              opacity: getOpacity(1),
-              child: buildLight(Colors.yellow),
-            ),
-            const SizedBox(height: 10),
+                  AnimatedOpacity(
+                    duration: const Duration(seconds: 1),
+                    opacity: getOpacity(1),
+                    child: buildLight(Colors.yellow, currentLight == 1),
+                  ),
 
-            AnimatedOpacity(
-              duration: const Duration(seconds: 1),
-              opacity: getOpacity(2),
-              child: buildLight(Colors.green),
+                  AnimatedOpacity(
+                    duration: const Duration(seconds: 1),
+                    opacity: getOpacity(2),
+                    child: buildLight(Colors.green, currentLight == 2),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 20),
 
@@ -78,13 +89,22 @@ class _TrafficLightPageState extends State<TrafficLightPage> {
     );
   }
 
-  Widget buildLight(Color color) {
+  Widget buildLight(Color color, bool isActive) {
     return Container(
       width: 80,
       height: 80,
       decoration: BoxDecoration(
         color: color,
         shape: BoxShape.circle,
+        boxShadow: isActive
+            ? [
+                BoxShadow(
+                  color: color.withOpacity(0.6),
+                  blurRadius: 20,
+                  spreadRadius: 10,
+                ),
+              ]
+            : [],
       ),
     );
   }
